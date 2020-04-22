@@ -394,18 +394,18 @@ if (key == CODED && gameState == GAME_RUN && moveDOWN==0 && moveLEFT==0 && moveR
       switch( keyCode ){ 
         case DOWN:
           downPressed = true;
-          if(groundhogY < height-groundhog_H){ moveDOWN = 15;}
+          if(groundhogY < height-groundhog_H-1){ moveDOWN = 15;}
           moveLayer = true;
           nowLayer+=1;
           if(nowLayer<=20){ soilmove -=80;}
           break;
         case LEFT :
           leftPressed = true;
-          if(groundhogX>0){ moveLEFT = 15;}
+          if(groundhogX>0+1){ moveLEFT = 15;}
           break;
         case RIGHT:
           rightPressed = true;
-          if(groundhogX < width-groundhog_W){ moveRIGHT = 15;}
+          if(groundhogX < width-groundhog_W-1){ moveRIGHT = 15;}
           break;     
 
       }
