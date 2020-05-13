@@ -142,6 +142,17 @@ void draw() {
 
 		case GAME_RUN: // In-Game
 
+
+
+		// Background
+		image(bg, 0, 0);
+
+		// Sun
+	    stroke(255,255,0);
+	    strokeWeight(5);
+	    fill(253,184,19);
+	    ellipse(590,50,120,120);
+
     if (moveLayer) {
       //if(soilmove>0){
       //move-=80.0/15.0;
@@ -152,15 +163,6 @@ void draw() {
       //  soilmove--;
       //}
     }
-
-		// Background
-		image(bg, 0, 0);
-
-		// Sun
-	    stroke(255,255,0);
-	    strokeWeight(5);
-	    fill(253,184,19);
-	    ellipse(590,50,120,120);
 
 		// Grass
 		fill(124, 204, 25);
@@ -225,10 +227,10 @@ void draw() {
 
            //stone1
            if(y%4==1 || y%4==2){     
-             if(x%4==1 || x%4==2){
+             if(x%4==0 || x%4==3){
              image(stone1, soilX, soilY, grid, grid);
              }
-           }else if(x%4==0 || x%4==3){
+           }else if(x%4==1 || x%4==2){
              image(stone1, soilX, soilY, grid, grid);
            }
          }
@@ -265,15 +267,15 @@ void draw() {
         //put a soldier image
         image(soldier,soldierX,soldierY);
         
-        //if(groundhogUP < soldierDOWN && groundhogDOWN > soldierUP 
-        //   && groundhogLEFT < soldierRIGHT && groundhogRIGHT > soldierLEFT){
-        //      playerHealth -=1;
-        //      groundhogX = grid*4;
-        //      groundhogY = grid;
-        //      moveDOWN = 0;
-        //      moveLEFT = 0;
-        //      moveRIGHT = 0;
-        // }
+        if(groundhogUP < soldierDOWN && groundhogDOWN > soldierUP 
+           && groundhogLEFT < soldierRIGHT && groundhogRIGHT > soldierLEFT){
+              playerHealth -=1;
+              groundhogX = grid*4;
+              groundhogY = grid;
+              moveDOWN = 0;
+              moveLEFT = 0;
+              moveRIGHT = 0;
+         }
         
     //Cabbage
     float cabbageUP = cabbageY;
@@ -285,13 +287,14 @@ void draw() {
         //put a cabbage image
           image(cabbage,cabbageX,cabbageY);
           
-           //if(groundhogUP < cabbageDOWN && groundhogDOWN > cabbageUP && 
-           //   groundhogLEFT < cabbageRIGHT && groundhogRIGHT > cabbageLEFT){ 
-           // playerHealth +=1;
-           // cabbageQuantity -= 1;
-           // }  
+           if(groundhogUP < cabbageDOWN && groundhogDOWN > cabbageUP && 
+              groundhogLEFT < cabbageRIGHT && groundhogRIGHT > cabbageLEFT){ 
+            playerHealth +=1;
+            cabbageQuantity -= 1;
+            }  
       }
-        
+    
+    //soil movement
     if (moveLayer) {
         popMatrix();
         //if(soilmove==0){moveLayer=false;}
